@@ -25,9 +25,11 @@ class RenderOrders extends StatelessWidget {
             : activeTab == 2
                 ? Random().nextInt(4) + 1
                 : 5;
+
+        bool isCancelled = Random().nextBool();
         return GestureDetector(
           onTap: () {
-            openOrderDetails(context);
+            openOrderDetails(context, isCancelled);
           },
           child: Container(
             decoration: BoxDecoration(
@@ -66,24 +68,52 @@ class RenderOrders extends StatelessWidget {
                       MyText(
                         text: 'SYL2321254',
                         style: getBoldStyle(
-                            fontSize: FontSize.s18, color: Colors.black),
+                            fontSize: FontSize.s16, color: Colors.black),
                       ),
                       const SizedBox(height: 5),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          MyText(
-                            text: '2:30 AM',
-                            style: getBoldStyle(
-                                fontSize: FontSize.s16,
-                                color: const Color(0xff717171)),
+                          Row(
+                            children: [
+                              MyText(
+                                text: '2:30 AM',
+                                style: getBoldStyle(
+                                    fontSize: FontSize.s16,
+                                    color: const Color(0xff717171)),
+                              ),
+                              const SizedBox(width: 20),
+                              MyText(
+                                text: 'Arabic',
+                                style: getBoldStyle(
+                                    fontSize: FontSize.s16,
+                                    color: const Color(0xff717171)),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 20),
-                          MyText(
-                            text: 'Arabic',
-                            style: getBoldStyle(
-                                fontSize: FontSize.s16,
-                                color: const Color(0xff717171)),
-                          ),
+                          if (isCancelled) ...{
+                            Row(
+                              children: [
+                                Container(
+                                  width: 20.w,
+                                  height: 20.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: const Color(0xffAD0C0C),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                                ),
+                                const SizedBox(width: 10),
+                                MyText(
+                                  text: "Cancelled",
+                                  style: getBoldStyle(
+                                      fontSize: FontSize.s14,
+                                      color: const Color(0xffAD0C0C)),
+                                )
+                              ],
+                            ),
+                          }
                         ],
                       )
                     ],
@@ -122,9 +152,10 @@ class _RenderOrdersHomeState extends State<RenderOrdersHome> {
           text: widget.orderTab == 1
               ? _locale.todaysOrders
               : _locale.upcomingOrders,
-          style: getBoldStyle(fontSize: FontSize.s20, color: Colors.black),
+          style: getBoldStyle(
+              fontSize: FontSize.s20, color: const Color(0xff444444)),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: 30.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -149,7 +180,9 @@ class _RenderOrdersHomeState extends State<RenderOrdersHome> {
                       text: _locale.all,
                       style: getBoldStyle(
                           fontSize: FontSize.s18,
-                          color: activeTab == 1 ? Colors.white : Colors.black),
+                          color: activeTab == 1
+                              ? Colors.white
+                              : const Color(0xff343434)),
                     )),
               ),
             ),
@@ -171,7 +204,9 @@ class _RenderOrdersHomeState extends State<RenderOrdersHome> {
                     text: _locale.interpreter,
                     style: getBoldStyle(
                         fontSize: FontSize.s18,
-                        color: activeTab == 2 ? Colors.white : Colors.black),
+                        color: activeTab == 2
+                            ? Colors.white
+                            : const Color(0xff343434)),
                   )),
             ),
             Container(
@@ -192,14 +227,16 @@ class _RenderOrdersHomeState extends State<RenderOrdersHome> {
                     text: _locale.translator,
                     style: getBoldStyle(
                         fontSize: FontSize.s18,
-                        color: activeTab == 3 ? Colors.white : Colors.black),
+                        color: activeTab == 3
+                            ? Colors.white
+                            : const Color(0xff343434)),
                   )),
             )
           ],
         ),
         const SizedBox(height: 10),
         SizedBox(
-          height: .34.sh,
+          height: .33.sh,
           child: RenderOrders(activeTab: activeTab),
         )
       ],

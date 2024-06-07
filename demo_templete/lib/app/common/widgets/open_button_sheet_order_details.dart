@@ -4,14 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tbib_flutter_simple_ui/tbib_flutter_simple_ui.dart';
 
-Future<dynamic> openOrderDetails(BuildContext context) {
+Future<dynamic> openOrderDetails(BuildContext context, bool isCancelled) {
   final locale = appController.localization!;
   return showModalBottomSheet(
       context: context,
       elevation: 2,
+      showDragHandle: true,
+      useSafeArea: true,
       isScrollControlled: true,
       builder: (context) => Container(
-            height: .6.sh,
+            height: .8.sh,
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(15)),
@@ -34,6 +36,31 @@ Future<dynamic> openOrderDetails(BuildContext context) {
                         style: getBoldStyle(
                             fontSize: FontSize.s14, color: AppColor.thirdColor),
                       ),
+                      const Spacer(),
+                      if (isCancelled) ...{
+                        Row(
+                          children: [
+                            Container(
+                              width: 20.w,
+                              height: 20.h,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: const Color(0xffAD0C0C),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                            ),
+                            const SizedBox(width: 10),
+                            MyText(
+                              text: "Cancelled",
+                              style: getBoldStyle(
+                                  fontSize: FontSize.s14,
+                                  color: const Color(0xffAD0C0C)),
+                            ),
+                            const SizedBox(width: 10),
+                          ],
+                        )
+                      }
                     ],
                   ),
                   const SizedBox(height: 20),
@@ -75,7 +102,6 @@ Future<dynamic> openOrderDetails(BuildContext context) {
                             )
                           ],
                         ),
-
                         const SizedBox(height: 10),
                         const Divider(color: Colors.grey),
                         const SizedBox(height: 10),
@@ -87,6 +113,25 @@ Future<dynamic> openOrderDetails(BuildContext context) {
                               children: [
                                 _Description(
                                     icon: FontAwesomeIcons.solidAddressCard,
+                                    text: "Client")
+                              ],
+                            ),
+                            _ValueDisplay(
+                              value: "Michelle",
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        const Divider(color: Colors.grey),
+                        const SizedBox(height: 10),
+
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                _Description(
+                                    icon: FontAwesomeIcons.solidClock,
                                     text: "Duration")
                               ],
                             ),
@@ -101,17 +146,22 @@ Future<dynamic> openOrderDetails(BuildContext context) {
                         const Divider(color: Colors.grey),
                         const SizedBox(height: 10),
 
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
+                            Row(
                               children: [
-                                _Description(
-                                    icon: FontAwesomeIcons.solidAddressCard,
-                                    text: "Order Type")
+                                Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 5),
+                                    width: 15.sp,
+                                    height: 20.sp,
+                                    color: AppColor.thirdColor),
+                                const SizedBox(width: 10),
+                                const _Tittle(text: "Order Type"),
                               ],
                             ),
-                            _ValueDisplay(
+                            const _ValueDisplay(
                               value: "Interpreter",
                             )
                           ],
@@ -128,7 +178,7 @@ Future<dynamic> openOrderDetails(BuildContext context) {
                             Column(
                               children: [
                                 _Description(
-                                    icon: FontAwesomeIcons.solidAddressCard,
+                                    icon: FontAwesomeIcons.mapLocation,
                                     text: "Address")
                               ],
                             ),
@@ -159,27 +209,7 @@ Future<dynamic> openOrderDetails(BuildContext context) {
                         ),
 
                         // language
-                        const SizedBox(height: 10),
-                        const Divider(color: Colors.grey),
-                        const SizedBox(height: 10),
 
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                _Description(
-                                    icon: FontAwesomeIcons.solidAddressCard,
-                                    text: "Address")
-                              ],
-                            ),
-                            _ValueDisplay(
-                              value: "Cairo, Egypt",
-                            )
-                          ],
-                        ),
-
-                        // DATE
                         const SizedBox(height: 10),
                         const Divider(color: Colors.grey),
                         const SizedBox(height: 10),
@@ -232,7 +262,7 @@ Future<dynamic> openOrderDetails(BuildContext context) {
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 40.sp, top: 20.sp),
+                          padding: EdgeInsets.only(top: 20.sp),
                           child: MyText(
                             text:
                                 "This is just a test comment test test test test test. This is just a test comment test test test test test his is just a test comment test test test test test",
@@ -261,7 +291,7 @@ class _Description extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        _RenderIcon(icon: icon),
+        SizedBox(width: 25.sp + 5, child: _RenderIcon(icon: icon)),
         const SizedBox(width: 10),
         _Tittle(text: text),
       ],
@@ -314,7 +344,7 @@ class _RenderIcon extends StatelessWidget {
     return FaIcon(
       icon,
       color: AppColor.thirdColor,
-      size: 20,
+      size: 25.sp,
     );
   }
 }

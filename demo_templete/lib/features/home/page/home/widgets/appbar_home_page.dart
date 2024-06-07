@@ -19,7 +19,7 @@ class _RenderHomeAppBarState extends State<RenderHomeAppBar> {
   late final _locale = appController.localization!;
   int selectTodayOrUpcomingOrder = 1;
   Color get containerFirstColor => const Color(0xff23B8E7).withOpacity(1);
-  Color get containerSecondColor => const Color(0xff008DBA).withOpacity(.99);
+  Color get containerSecondColor => const Color(0xff008DBA).withOpacity(.88);
 
   Color get containerFirstColorDisabled =>
       const Color(0xffC8D7DC).withOpacity(1);
@@ -29,11 +29,11 @@ class _RenderHomeAppBarState extends State<RenderHomeAppBar> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: .3.sh + .12.sh,
+      height: .3.sh + .1.sh,
       child: Stack(
         children: [
           Container(
-            height: .32.sh,
+            height: .3.sh,
             width: context.width,
             padding: EdgeInsets.only(top: 50.h, left: 20, right: 20),
             decoration: const BoxDecoration(
@@ -49,53 +49,43 @@ class _RenderHomeAppBarState extends State<RenderHomeAppBar> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 40),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CircleAvatar(
-                        radius: 10.r,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color(0xff1F9515),
-                            borderRadius: BorderRadius.circular(
-                                50.0), // Adjust for desired size
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 10.r,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: const Color(0xff1F9515),
+                                borderRadius: BorderRadius.circular(
+                                    50.0), // Adjust for desired size
+                              ),
+                            ),
                           ),
-                        ),
+                          const SizedBox(width: 10),
+                          MyText(
+                            text: "Available",
+                            style: getBoldStyle(
+                                fontSize: FontSize.s16, color: Colors.white),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 10),
-                      MyText(
-                        text: "Available",
-                        style: getBoldStyle(
-                            fontSize: FontSize.s16, color: Colors.white),
-                      ),
+                      Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.solidBell,
+                            color: Colors.white,
+                            size: 25.sp,
+                          ),
+                          SizedBox(
+                            width: 30.w,
+                          )
+                        ],
+                      )
                     ],
                   ),
-                  // Row(children: [
-                  //   CircleAvatar(
-                  //     radius: 20.r,
-                  //     child: SvgPicture.asset('assets/svg/avatar.svg',
-                  //         color: Colors.white,
-                  //         package: 'tbib_flutter_simple_ui'),
-                  //   ),
-                  //   const SizedBox(width: 10),
-                  //   MyText(
-                  //       text: 'Hi, ',
-                  //       style: getMediumStyle(fontSize: FontSize.s20)),
-                  //   MyText(
-                  //     text: "Michelle Raouf",
-                  //     style: getMediumStyle(fontSize: FontSize.s20),
-                  //   ),
-                  //   const Spacer(),
-                  //   GestureDetector(
-                  //     onTap: () {
-                  //       //  const NotificationRoute().push(context);
-                  //     },
-                  //     child: const FaIcon(
-                  //       FontAwesomeIcons.bell,
-                  //       color: Colors.white,
-                  //     ),
-                  //   ),
-                  // ]),
                   const SizedBox(height: 20),
                   Row(
                     children: [
@@ -104,11 +94,13 @@ class _RenderHomeAppBarState extends State<RenderHomeAppBar> {
                         children: [
                           MyText(
                             text: _locale.checkYourOrder,
-                            style: getBoldStyle(fontSize: FontSize.s20),
+                            style: getBoldStyle(
+                                fontSize: FontSize.s20,
+                                color: const Color(0xffE3DFDF)),
                           ),
                           MyText(
                             text: _locale.tody,
-                            style: getBoldStyle(fontSize: FontSize.s32),
+                            style: getBoldStyle(fontSize: FontSize.s36),
                           )
                         ],
                       ),

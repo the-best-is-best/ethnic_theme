@@ -34,12 +34,17 @@ class _HomeScreenState extends State<HomeScreen> {
               _selectTab = index;
             });
           },
-          selectedIconTheme: const IconThemeData(color: AppColor.thirdColor),
+          selectedIconTheme: const IconThemeData(color: AppColor.activeIcon),
+          unselectedIconTheme: const IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
-          selectedLabelStyle: getMediumStyle(fontSize: FontSize.s14),
-          unselectedLabelStyle: getRegularStyle(fontSize: FontSize.s14),
+          selectedLabelStyle: getMediumStyle(
+            fontSize: FontSize.s14,
+            color: const Color(0xff282828),
+          ),
+          unselectedLabelStyle: getRegularStyle(
+              fontSize: FontSize.s14, color: const Color(0xff282128)),
           iconSize: 30,
-          unselectedItemColor: Colors.black,
+          unselectedItemColor: const Color(0xff222828),
           type: BottomNavigationBarType.fixed,
           showUnselectedLabels: true,
           items: const [

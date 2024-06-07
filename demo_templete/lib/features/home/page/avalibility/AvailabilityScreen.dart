@@ -24,8 +24,18 @@ class _AvailabilityScreenState extends State<AvailabilityScreen> {
   int? selectedAvailabilityTab;
   bool inEditMode = false;
   List<int> days = [
-    for (int i = 0; i < Random().nextInt(7); i++) ...{i}
+    for (int i = 0; i < Random().nextInt(6); i++) ...{i}
   ];
+  @override
+  void initState() {
+    super.initState();
+    if (days.isEmpty) {
+      setState(() {
+        days = [1];
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     late final locale = appController.localization!;
