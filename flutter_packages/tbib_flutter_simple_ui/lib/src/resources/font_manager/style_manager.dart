@@ -5,11 +5,13 @@ TextStyle _getTextStyle({
   required double fontSize,
   required FontWeight fontWeight,
   required Color? color,
+  required String? fontFamily,
 }) {
   return TextStyle(
     fontSize: fontSize,
     color: color ?? Colors.white,
     fontWeight: fontWeight,
+    fontFamily: fontFamily,
   );
 }
 
@@ -17,11 +19,13 @@ TextStyle _getTextStyle({
 TextStyle getLightStyle({
   double? fontSize,
   Color? color,
+  String? fontFamily,
 }) {
   return _getTextStyle(
     fontSize: fontSize ?? FontSize.s20,
     fontWeight: FontWeightManager.light,
     color: color,
+    fontFamily: fontFamily,
   );
 }
 
@@ -30,11 +34,13 @@ TextStyle getLightStyle({
 TextStyle getRegularStyle({
   double? fontSize,
   Color? color,
+  String? fontFamily,
 }) {
   return _getTextStyle(
     fontSize: fontSize ?? FontSize.s16,
     fontWeight: FontWeightManager.regular,
     color: color,
+    fontFamily: fontFamily,
   );
 }
 
@@ -44,11 +50,13 @@ TextStyle getMediumStyle({
   //double fontSize = FontSize.s16,
   double? fontSize,
   Color? color,
+  String? fontFamily,
 }) {
   return _getTextStyle(
     fontSize: fontSize ?? FontSize.s18,
     fontWeight: FontWeightManager.medium,
     color: color,
+    fontFamily: fontFamily,
   );
 }
 
@@ -58,11 +66,13 @@ TextStyle getSemiBoldStyle({
   // double fontSize = FontSize.s18,
   double? fontSize,
   Color? color,
+  String? fontFamily,
 }) {
   return _getTextStyle(
     fontSize: fontSize ?? FontSize.s16,
     fontWeight: FontWeightManager.semiBold,
     color: color,
+    fontFamily: fontFamily,
   );
 }
 
@@ -78,5 +88,6 @@ TextStyle getBoldStyle({
     fontSize: fontSize ?? FontSize.s22,
     fontWeight: FontWeightManager.bold,
     color: color,
+    fontFamily: fontFamily,
   );
 }

@@ -4,6 +4,7 @@ import 'package:demo_templete/features/home/page/home/home_page.dart';
 import 'package:demo_templete/features/home/page/order_history/order_history_page.dart';
 import 'package:demo_templete/features/home/page/setting/setting_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tbib_flutter_simple_ui/tbib_flutter_simple_ui.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -39,10 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.white,
           selectedLabelStyle: getMediumStyle(
             fontSize: FontSize.s14,
+            fontFamily: GoogleFonts.inter().fontFamily,
             color: const Color(0xff282828),
           ),
           unselectedLabelStyle: getRegularStyle(
-              fontSize: FontSize.s14, color: const Color(0xff282128)),
+            fontSize: FontSize.s14,
+            color: const Color(0xff282128),
+            fontFamily: GoogleFonts.inter().fontFamily,
+          ),
           iconSize: 30,
           unselectedItemColor: const Color(0xff222828),
           type: BottomNavigationBarType.fixed,
