@@ -43,6 +43,8 @@ class _RenderHomeAppBarState extends State<RenderHomeAppBar> {
               ),
               gradient: LinearGradient(
                 colors: [AppColor.primaryColor, Color(0xff235DFF)],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
               ),
             ),
             child: Column(

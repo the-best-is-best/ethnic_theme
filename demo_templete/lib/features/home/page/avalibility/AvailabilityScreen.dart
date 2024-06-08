@@ -43,7 +43,11 @@ class _AvailabilityScreenState extends State<AvailabilityScreen> {
     return Column(children: [
       RenderAppBar(
         supportEditMode: selectedAvailabilityTab != null ? true : false,
-        title: locale.availability,
+        title: selectedAvailabilityTab == null || selectedAvailabilityTab == 0
+            ? locale.availability
+            : selectedAvailabilityTab == 1
+                ? locale.awayPeriod
+                : locale.preferredOrderType,
         inEditMode: inEditMode,
         onEdit: (edit) {
           setState(() {

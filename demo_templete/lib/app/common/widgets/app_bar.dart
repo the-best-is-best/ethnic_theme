@@ -58,7 +58,7 @@ class _RenderAppBarState extends State<RenderAppBar> {
                 // const SizedBox(height: 10),
                 MyText(
                   text: widget.title,
-                  style: getBoldStyle(fontSize: FontSize.s30),
+                  style: getBoldStyle(fontSize: FontSize.s22),
                 )
               ])),
           if (widget.supportEditMode) ...{

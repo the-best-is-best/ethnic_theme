@@ -19,6 +19,7 @@ Future<bool?> showRevertConfirmDialog(
                 backgroundColor: Colors.white,
                 content: content ??
                     Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const $AssetsImagesGen()
@@ -27,12 +28,18 @@ Future<bool?> showRevertConfirmDialog(
                         Text(
                           title ??
                               'Are you sure that you want to close this page?',
-                          style: getMediumStyle(color: const Color(0xff59606E)),
+                          textAlign: TextAlign.center,
+                          style: getMediumStyle(
+                              color: const Color(0xff59606E),
+                              fontSize: FontSize.s20),
                         ),
                         const SizedBox(height: 20),
                         Text(
                           subContent ?? 'You won’t be able to revert this',
-                          style: getMediumStyle(color: Colors.red),
+                          textAlign: TextAlign.center,
+                          style: getBoldStyle(
+                              color: const Color(0xffF24822),
+                              fontSize: FontSize.s24),
                         ),
                         const SizedBox(height: 20),
                         Row(
@@ -41,20 +48,32 @@ Future<bool?> showRevertConfirmDialog(
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.red,
-                                  minimumSize: Size(60.w, 40.h),
-                                ),
-                                onPressed: () => Navigator.pop(context),
-                                child: const Text('No')),
-                            ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.green,
-                                  minimumSize: Size(60.w, 40.h),
+                                  minimumSize: Size(70.w, 30.h),
                                 ),
                                 onPressed: () {
                                   onConfirm();
                                   Navigator.pop(context);
                                 },
-                                child: const Text('Yes')),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Text(
+                                    'Yes',
+                                    style: getBoldStyle(fontSize: FontSize.s14),
+                                  ),
+                                )),
+                            ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xff61A51D),
+                                  minimumSize: Size(70.w, 30.h),
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  'Cancel',
+                                  style: getBoldStyle(fontSize: FontSize.s14),
+                                )),
                           ],
                         ),
                       ],
